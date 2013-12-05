@@ -1,3 +1,6 @@
+#= require router
+#= require_self
+
 App.Router.reopen
   location: 'history'
 

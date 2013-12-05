@@ -9,15 +9,14 @@ html
     link rel="stylesheet" href="/assets/application.css"
   body
     #container
-    script src="//code.jquery.com/jquery-1.10.2.js"
-    script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"
-    script src="//builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.1.2.js"
-    script src="//raw.github.com/machty/emblem.js/master/dist/emblem.js"
-    script src="//builds.emberjs.com/tags/v1.2.0/ember.js"
-    script src="/assets/application.js"
+    script src="//code.jquery.com/jquery-1.10.2.js" type="text/javascript"
+    script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js" type="text/javascript"
+    script src="//builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.1.2.js" type="text/javascript"
+    script src="//raw.github.com/machty/emblem.js/master/dist/emblem.js" type="text/javascript"
+    script src="//builds.emberjs.com/tags/v1.2.0/ember.js" type="text/javascript"
+    script src="/assets/application.js" type="text/javascript"
     script type="text/x-emblem" data-template-name="application"
       |
+        h1 = App.title
         outlet
-    script type="text/x-emblem" data-template-name="index"
-      |
-        h1 Hello!
+    / script type="text/x-emblem" data-template-name="index"

@@ -1,5 +1,11 @@
 (function() {
-  window.App = Ember.Application.create();
+  window.App = Ember.Application.create({
+    title: "Parcel Delivery"
+  });
+
+}).call(this);
+(function() {
+  App.Router.map(function() {});
 
 }).call(this);
 (function() {
