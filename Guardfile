@@ -26,18 +26,8 @@ guard :rspec, cli: '--colour --format documentation' do
 end
 
 
-guard 'sass', :input => 'app/stylesheets'
-
 guard 'slim', :input_root => 'app/views', :output_root => 'public', :slim => { :pretty => true } do
   watch(%r'^.+\.slim$')
-end
-
-guard 'coffeescript', :output => 'app/javascripts/compiled' do
-  watch(%r{^app/coffeescripts/.*\.coffee$})
-end
-
-guard 'coffeescript', :output => 'spec/javascripts/compiled' do
-  watch(%r{^spec/coffeescripts/.*\.coffee$})
 end
 
 guard 'sprockets2',
@@ -52,10 +42,10 @@ guard 'sprockets2',
 end
 
 guard 'livereload' do
-  watch(%r{app/views/.+\.(erb|haml|slim)$})
-  watch(%r{app/helpers/.+\.rb})
+  # watch(%r{app/views/.+\.(erb|haml|slim)$})
+  # watch(%r{app/helpers/.+\.rb})
   watch(%r{public/.+\.(css|js|html)})
-  watch(%r{config/locales/.+\.yml})
+  # watch(%r{config/locales/.+\.yml})
   # Rails Assets Pipeline
   watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
 end
