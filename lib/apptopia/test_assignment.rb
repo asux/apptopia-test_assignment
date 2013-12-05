@@ -5,4 +5,8 @@ module Apptopia::TestAssignment
       memo
     end.select { |item, count| count == 1 }.keys
   end
+
+  def self.tree_levels(tree)
+    TreeCollector.new(tree).to_a
+  end
 end
