@@ -17,5 +17,26 @@ html
     script src="/assets/application.js"
     script type="text/x-emblem" data-template-name="application"
       |
-        h1 = App.title
-        outlet
+        #calculator.container
+          outlet
+    script type="text/x-emblem" data-template-name="index"
+      |
+        .row.bordered
+          h1.center-block Parcel Delivery Calculator
+        .row.bordered
+          form.input-group
+            .col-lg-2
+              Em.TextField valueBinding='App.parcel.width' placeholder='Width' class='form-control'
+            .col-lg-2
+              Em.TextField valueBinding='App.parcel.length' placeholder='Length' class='form-control'
+            .col-lg-2
+              Em.TextField valueBinding='App.parcel.height' placeholder='Height' class='form-control'
+            .col-lg-2
+              Em.TextField valueBinding='App.parcel.weight' placeholder='Weight' class='form-control'
+        .row.bordered
+          .row EMS
+          .row Priority
+          .row Courier
+        .row.bordered
+          .center-block
+            span.total TOTAL: ${{App.parcel.total}}

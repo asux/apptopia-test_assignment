@@ -1,4 +1,13 @@
-body {
-  margin: 0px;
-  padding: 0px;
-  background: white; }
+#calculator {
+  margin: 50px auto auto auto;
+  width: 840px; }
+
+.row {
+  padding: 10px; }
+
+.bordered {
+  border: solid 2px #cccccc; }
+
+.total {
+  font-size: 18px;
+  font-weight: bold; }
