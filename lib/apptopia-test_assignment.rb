@@ -7,3 +7,4 @@ module Apptopia
 end
 
 require 'apptopia/test_assignment/non_duplicates'
+require 'apptopia/test_assignment/tree_levels'
