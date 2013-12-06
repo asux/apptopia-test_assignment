@@ -1,9 +1,12 @@
 #calculator {
   margin: 50px auto auto auto;
-  width: 840px; }
+  max-width: 840px; }
 
 .row {
   padding: 10px; }
+  .row .parcel-attribute {
+    margin-top: 4px;
+    margin-bottom: 4px; }
 
 .bordered {
   border: solid 2px #cccccc; }
@@ -11,3 +14,11 @@
 .total {
   font-size: 18px;
   font-weight: bold; }
+
+.carrier-radio-button input {
+  margin-right: 10px; }
+.carrier-radio-button label.disabled {
+  color: red; }
+
+.carriers {
+  margin-left: 20px; }

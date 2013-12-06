@@ -24,22 +24,23 @@
       .row.bordered
         h1.center-block Parcel Delivery Calculator
       .row.bordered
-        form.input-group
-          .col-lg-2
-            Em.TextField valueBinding='App.parcel.width' placeholder='Width' class='form-control'
-          .col-lg-2
-            Em.TextField valueBinding='App.parcel.length' placeholder='Length' class='form-control'
-          .col-lg-2
-            Em.TextField valueBinding='App.parcel.height' placeholder='Height' class='form-control'
-          .col-lg-2
-            Em.TextField valueBinding='App.parcel.weight' placeholder='Weight' class='form-control'
+        form.form-inline
+          .col-md-3
+            Em.TextField valueBinding='App.parcel.width' placeholder='Width' class='form-control parcel-attribute'
+          .col-md-3
+            Em.TextField valueBinding='App.parcel.length' placeholder='Length' class='form-control parcel-attribute'
+          .col-md-3
+            Em.TextField valueBinding='App.parcel.height' placeholder='Height' class='form-control parcel-attribute'
+          .col-md-3
+            Em.TextField valueBinding='App.parcel.weight' placeholder='Weight' class='form-control parcel-attribute'
       .row.bordered
-        .row EMS
-        .row Priority
-        .row Courier
+        .col-md-2.radio.carriers
+          each App.carriers
+            .row
+              view App.CarrierRadioButton optionBinding=name titleBinding=name disabledBinding=isOverloaded valueBinding='App.currentCarrierName'
       .row.bordered
         .center-block
-          span.total TOTAL: ${{App.parcel.total}}
+          span.total TOTAL: {{total}}
     </script>
   </body>
 </html>
