@@ -39,5 +39,5 @@ html
               .row
                 view App.CarrierRadioButton optionBinding=name titleBinding=name disabledBinding=isOverloaded valueBinding='App.currentCarrierName'
         .row.bordered
-          .center-block
-            span.total TOTAL: {{total}}
+          div class={:center-block :alert isValid:alert-info:alert-warning}
+            span.total = total
