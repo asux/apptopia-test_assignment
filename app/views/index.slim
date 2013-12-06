@@ -35,9 +35,9 @@ html
               Em.TextField valueBinding='App.parcel.weight' placeholder='Weight' class='form-control parcel-attribute'
         .row.bordered
           .col-md-2.radio.carriers
-            each App.carriers
+            each carriers
               .row
-                view App.CarrierRadioButton optionBinding=name titleBinding=name disabledBinding=isOverloaded valueBinding='App.currentCarrierName'
+                view App.CarrierRadioButton optionBinding=name titleBinding=name disabledBinding=isOverloaded valueBinding='controller.currentCarrierName'
         .row.bordered
           div class={:center-block :alert isValid:alert-info:alert-warning}
             span.total = total

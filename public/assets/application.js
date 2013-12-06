@@ -29,28 +29,51 @@
 }).call(this);
 (function() {
   App.IndexController = App.ApplicationController.extend({
+    currentCarrierName: null,
+    carriers: [
+      App.Carrier.create({
+        name: 'EMS',
+        processingFee: 10,
+        pricePerUnit: 1.5,
+        maxWeight: 30
+      }), App.Carrier.create({
+        name: 'Priority',
+        processingFee: 15,
+        pricePerUnit: 5,
+        maxWeight: 22
+      }), App.Carrier.create({
+        name: 'Courier',
+        processingFee: 20,
+        pricePerUnit: 15,
+        maxWeight: 10
+      })
+    ],
     isValid: false,
     total: (function() {
-      var currentCarrier, parcelWeight, total;
-      currentCarrier = App.carriers.filter(function(item) {
-        return item.name === App.currentCarrierName;
-      })[0];
-      parcelWeight = App.parcel.get('weight');
-      if (isNaN(parcelWeight) || parcelWeight === '' || parcelWeight === null) {
+      var carriers, currentCarrier, currentCarrierName, overloaded, parcelWeight, total;
+      carriers = this.get('carriers');
+      currentCarrierName = this.get('currentCarrierName');
+      currentCarrier = carriers.filterBy('name', currentCarrierName)[0];
+      parcelWeight = parseFloat(App.get('parcel').get('weight'));
+      overloaded = carriers.filterBy('isOverloaded');
+      if (isNaN(parcelWeight)) {
         this.set('isValid', false);
         return "Enter parcel weight as a number.";
+      } else if (overloaded.length === carriers.length) {
+        this.set('isValid', false);
+        return "This parcel is over processing limits and could not be delivered.";
       } else if (!currentCarrier) {
         this.set('isValid', false);
         return "Select the carrier.";
       } else if (currentCarrier.get('isOverloaded')) {
         this.set('isValid', false);
-        return "This parcel is over processing limits for " + (currentCarrier.get('name')) + ".";
+        return "This parcel is over processing limits for " + currentCarrierName + ", please select another carrier.";
       } else {
-        total = parseFloat(App.processingFee) + parseFloat(currentCarrier.get('processingFee')) + parseFloat(parcelWeight) * parseFloat(currentCarrier.get('pricePerUnit'));
+        total = parseFloat(App.processingFee) + parseFloat(currentCarrier.get('processingFee')) + parcelWeight * parseFloat(currentCarrier.get('pricePerUnit'));
         this.set('isValid', true);
         return "TOTAL: $" + total;
       }
-    }).property('App.parcel.weight', 'App.currentCarrierName')
+    }).property('App.parcel.weight', 'currentCarrierName', 'carriers.@each.isOverloaded')
   });
 
 }).call(this);
@@ -89,27 +112,8 @@
 
   App.reopen({
     rootElement: '#container',
-    parcel: App.Parcel.create(),
     processingFee: 15,
-    currentCarrierName: null,
-    carriers: [
-      App.Carrier.create({
-        name: 'EMS',
-        processingFee: 10,
-        pricePerUnit: 1.5,
-        maxWeight: 30
-      }), App.Carrier.create({
-        name: 'Priority',
-        processingFee: 15,
-        pricePerUnit: 5,
-        maxWeight: 22
-      }), App.Carrier.create({
-        name: 'Courier',
-        processingFee: 20,
-        pricePerUnit: 15,
-        maxWeight: 10
-      })
-    ]
+    parcel: App.Parcel.create()
   });
 
 }).call(this);
